@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.mat-success {
+    color: #28a745 !important;
+    background-color: white !important;
+}
+.mat-success:hover {
+    background-color: #f4fff7 !important;
+}
+
+.mat-orange {
+    color: #FF8F00!important;
+    background-color: white !important;
+}
+.mat-orange:hover {
+    background-color:#FFE0B2 !important;
+}
+
+.mat-danger {
+    color: #F44336 !important;
+    background-color: white !important;
+}
+
+.mat-danger:hover {
+    background-color: #FFEBEE !important;
+}
+
+.fa-white {
+    color: white;
+}

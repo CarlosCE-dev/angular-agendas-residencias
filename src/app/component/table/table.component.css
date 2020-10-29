@@ -1,0 +1,22 @@
+.dot {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.green{
+    background-color:green;
+}
+
+.red{
+    background-color:red;
+}
+
+.agenda__table-body td{
+    text-align: center;
+}
+
+.agenda__table-head th{
+    text-align: center;
+}

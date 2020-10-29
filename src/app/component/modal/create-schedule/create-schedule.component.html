@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Agregar evento</h1>
+<div mat-dialog-content>
+    <div class="alert alert-danger" role="alert" *ngIf="requerido">
+      Es requerido rellenar todos los campos
+    </div>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" class="form-control" [(ngModel)]="agenda.nombre"  placeholder="Nombre del evento">
+    </div>
+    <div class="form-group">
+      <label>Responsable</label>
+      <input type="text" class="form-control" [(ngModel)]="agenda.persona" placeholder="Responsable del evento">
+    </div>
+    <div class="form-group">
+      <label>Telefono</label>
+      <input type="text" class="form-control" [(ngModel)]="agenda.telefono" placeholder="Telefono del responsable">
+    </div>
+    <div class="form-group">
+      <label>Correo</label>
+      <input type="email" class="form-control" [(ngModel)]="agenda.correo" placeholder="Email del responsable">
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <label>Horario</label>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <input matInput 
+                  [(ngModel)]="agenda.fecha_inicio" 
+                  type="datetime-local" 
+                  placeholder="Fecha de inicio">
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field>
+          <input matInput
+                [(ngModel)]="agenda.fecha_fin" 
+                type="datetime-local" 
+                placeholder="Fecha de fin">
+        </mat-form-field>
+      </div>
+    </div>
+</div>
+<div mat-dialog-actions align="end" class="pt-4">
+  <button mat-button color="accent" (click)="cancel()">Cancelar</button>
+  <button mat-button class="mat-success" (click)="saveData()">Guardar</button>
+</div>
