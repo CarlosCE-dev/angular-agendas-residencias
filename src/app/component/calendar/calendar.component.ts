@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { AgendaService } from 'src/app/services/agenda.service';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent {
+export class CalendarComponent  {
 
-  constructor() { }
-
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth'
-  };
+  constructor(
+    public agendaService: AgendaService
+  ) {}
 
 }

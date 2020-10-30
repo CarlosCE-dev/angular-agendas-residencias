@@ -1,3 +1,5 @@
-.agenda__home{
-    height: 100vh;
+.agenda__calendar{
+    width: 100%;
+    padding: 20px;
+    background-color: honeydew;
 }

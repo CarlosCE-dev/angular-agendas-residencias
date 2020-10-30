@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CreateScheduleComponent, ResponseDialog } from '../modal/create-schedule/create-schedule.component';
 
@@ -13,7 +13,7 @@ import { AgendaService } from 'src/app/services/agenda.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   email: string;
 
@@ -21,6 +21,19 @@ export class HomeComponent {
     public dialog: MatDialog,
     private agendaService: AgendaService
   ) {}
+
+  ngOnInit(){
+
+    // Nueva agenda
+    const agenda = new Agenda();
+    agenda.nombre = "Cumpleaños Mario";
+    agenda.persona = "Carlos Esteban Corral";
+    agenda.telefono = "6291017687";
+    agenda.correo = "test@test.com"
+    agenda.status = true;
+
+    this.agendaService.addAgenda( agenda );
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateScheduleComponent, {
@@ -31,7 +44,7 @@ export class HomeComponent {
     dialogRef.componentInstance.agenda = new Agenda();
 
     dialogRef.afterClosed().subscribe( ( response:ResponseDialog ) => {
-      if ( response.ok ) {
+      if ( response?.ok ) {
         this.agendaService.addAgenda( response.agenda );
       }
     });

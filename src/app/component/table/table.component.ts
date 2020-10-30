@@ -23,7 +23,7 @@ export class TableComponent {
     public agendaService: AgendaService
   ) {}
 
-  openEdit( id:Number ): void {
+  openEdit( id:number ): void {
     const dialogRef = this.dialog.open(CreateScheduleComponent, {
       width: '500px',
     });
@@ -42,7 +42,7 @@ export class TableComponent {
 
   }
 
-  openDelete( id:Number ): void {
+  openDelete( id:number ): void {
     const dialogRef = this.dialog.open(DeleteModalComponent, {
       width: '300px',
     });

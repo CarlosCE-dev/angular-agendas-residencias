@@ -14,16 +14,16 @@ export class Agenda {
         this.fehca_fin_f = "";
     }
 
-    id?: Number = 0;
-    nombre: String;
-    persona: String;
-    telefono: String;
-    correo: String;
-    fecha_inicio: String;
-    fecha_inicio_f: String;
-    fecha_fin: String;
-    fehca_fin_f: String;
-    status: Boolean = true;
+    id?: number = 0;
+    nombre: string;
+    persona: string;
+    telefono: string;
+    correo: string;
+    fecha_inicio: string;
+    fecha_inicio_f: string;
+    fecha_fin: string;
+    fehca_fin_f: string;
+    status: boolean = true;
 
     validateModel(): boolean {
         if ( this.nombre.trim() === ""){
