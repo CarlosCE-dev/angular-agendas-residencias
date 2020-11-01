@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { CreateScheduleComponent, ResponseDialog } from '../modal/create-schedule/create-schedule.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateScheduleComponent } from '../modal/create-schedule/create-schedule.component';
 
 // Model
 import { Agenda } from 'src/app/model/agenda';
 
 // Services
 import { AgendaService } from 'src/app/services/agenda.service';
+
+// Interface
+import { ResponseDialog } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-home',

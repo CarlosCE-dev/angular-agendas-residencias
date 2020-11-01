@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
-
-import * as moment from 'moment';
-
-import { AgendaService } from 'src/app/services/agenda.service';
-
 import { MatDialog } from '@angular/material/dialog';
 
-import { CreateScheduleComponent, ResponseDialog } from '../modal/create-schedule/create-schedule.component';
+// Service
+import { AgendaService } from 'src/app/services/agenda.service';
+
+// Dialog
+import { CreateScheduleComponent } from '../modal/create-schedule/create-schedule.component';
 import { DeleteModalComponent } from '../modal/delete-modal/delete-modal.component';
 
+// Model
 import { Agenda } from 'src/app/model/agenda';
+
+// Interface
+import { ResponseDialog } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-table',

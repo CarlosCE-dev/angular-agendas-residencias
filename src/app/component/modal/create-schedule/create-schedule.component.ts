@@ -1,12 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Agenda } from 'src/app/model/agenda';
-import { AgendaService } from 'src/app/services/agenda.service';
 
-export interface ResponseDialog {
-  ok: Boolean,
-  agenda: Agenda
-}
+// Agenda
+import { Agenda } from 'src/app/model/agenda';
+
+// Service
+import { AgendaService } from 'src/app/services/agenda.service';
 
 @Component({
   selector: 'app-create-schedule',

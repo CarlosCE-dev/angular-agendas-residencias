@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Agenda } from '../model/agenda';
-import { CalendarDate } from '../interfaces/interfaces';
-import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+
+// Dependencies
 import * as moment from 'moment';
 import esLocale from '@fullcalendar/core/locales/es';
+import { CalendarOptions } from '@fullcalendar/angular';
+
+// Interface
+import { CalendarDate } from '../interfaces/interfaces';
+
+// Model
+import { Agenda } from '../model/agenda';
 
 @Injectable({
   providedIn: 'root'

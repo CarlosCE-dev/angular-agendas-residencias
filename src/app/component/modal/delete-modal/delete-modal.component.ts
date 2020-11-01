@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+
+// Dialog
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
