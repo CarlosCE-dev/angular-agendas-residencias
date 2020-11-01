@@ -1,12 +1,15 @@
-<table class="table table-dark">
+<div class="alert alert-info" role="alert" *ngIf="agendaService.agendas.length === 0">
+    <strong> Por el momento no tienes eventos creados. </strong>
+</div>
+
+<table class="table table-dark" *ngIf="agendaService.agendas.length !== 0">
     <thead>
         <tr class="agenda__table-head">
             <th scope="col">Nombre</th>
             <th scope="col">Encargado</th>
             <th scope="col">Telefono</th>
             <th scope="col">Correo</th>
-            <th scope="col">Fecha de Inicio</th>
-            <th scope="col">Fecha de Fin</th>
+            <th scope="col">Fecha </th>
             <th scope="col">Status</th>
             <th scope="col"></th>
         </tr>
@@ -17,8 +20,7 @@
             <td>{{ item.persona }}</td>
             <td>{{ item.telefono }}</td>
             <td>{{ item.correo }}</td>
-            <td>{{ item.fecha_inicio | date }}</td>
-            <td>{{ item.fecha_fin | date }}</td>
+            <td>{{ item.fecha | date }}</td>
             <td>
                 <span class="dot"
                     [ngClass]="item.status ? 'green' : 'red'">

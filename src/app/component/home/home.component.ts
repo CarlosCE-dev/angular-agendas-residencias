@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private agendaService: AgendaService
+    private agendaService: AgendaService,
   ) {}
 
   ngOnInit(){
@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateScheduleComponent, {
-      disableClose: true,
       width: '500px',
     });
 

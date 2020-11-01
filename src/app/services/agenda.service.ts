@@ -3,6 +3,7 @@ import { Agenda } from '../model/agenda';
 import { CalendarDate } from '../interfaces/interfaces';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import * as moment from 'moment';
+import esLocale from '@fullcalendar/core/locales/es';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class AgendaService {
   constructor() {}
 
   public calendarOptions: CalendarOptions = {
+    locale: esLocale,
     initialView: 'dayGridMonth',
     events: []
   };
@@ -58,11 +60,34 @@ export class AgendaService {
     this.calendarOptions.events = calendarDates.map( c => {
       if ( agenda.id === c.id ) {
         c.title = agenda.nombre;
-        // @ts-ignore
-        c.date = moment(agenda.fecha_inicio).format('YYYY-MM-DD')
+        c.date = moment(agenda.fecha).format('YYYY-MM-DD')
       }
       return c;
     })
+  }
+
+  checkDate( checkDate:Date, id:number ){
+    
+    for ( const agenda of this.agendas ){
+
+      if ( agenda.id === id ) {
+        return false;
+      }
+
+      const sameDay = (d1:Date, d2:Date ) => {
+        return d1.getFullYear() === d2.getFullYear() &&
+          d1.getMonth() === d2.getMonth() &&
+          d1.getDate() === d2.getDate();
+      }
+  
+      const exactDay = sameDay( agenda.fecha, checkDate );
+
+      if ( exactDay ) {
+        return true;
+      }
+    }
+    
+    return false;
   }
 
   removeCalendarDate( id:number){
@@ -85,8 +110,7 @@ export class AgendaService {
     const calendarDate:CalendarDate = {
       id: agenda.id,
       title: agenda.nombre,
-      // @ts-ignore
-      date: moment(agenda.fecha_inicio).format('YYYY-MM-DD')
+      date: moment(agenda.fecha).format('YYYY-MM-DD')
     }
 
     calendarDates.push( calendarDate );
@@ -100,8 +124,7 @@ export class AgendaService {
       const calendarDate:CalendarDate = {
         id: agenda.id,
         title: agenda.nombre,
-        // @ts-ignore
-        date: moment(agenda.fecha_inicio).format('YYYY-MM-DD')
+        date: moment(agenda.fecha).format('YYYY-MM-DD')
       };
       return calendarDate;
     });

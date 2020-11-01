@@ -29,10 +29,9 @@ export class TableComponent {
     });
 
     const agenda = this.agendaService.getAgenda( id );
-    // @ts-ignore
-    agenda.fecha_inicio = moment( agenda.fecha_inicio ).format('YYYY-MM-DDTHH:MM');
     
     dialogRef.componentInstance.agenda = new Agenda( agenda );
+    dialogRef.componentInstance.nombreModal = "Editar evento";
 
     dialogRef.afterClosed().subscribe( ( response:ResponseDialog ) => {
       if ( response?.ok ) {
