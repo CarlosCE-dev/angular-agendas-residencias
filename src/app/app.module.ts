@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Plugins
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
@@ -44,6 +45,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   imports: [
     FormsModule,
     BrowserModule,
+    HttpClientModule,
     NgbModule,
     MaterialModule,
     BrowserAnimationsModule,

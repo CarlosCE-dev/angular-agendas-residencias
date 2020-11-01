@@ -41,7 +41,6 @@ export class AgendaService {
   }
 
   addAgenda( agenda:Agenda ): void {
-    agenda.id = this.agendas.length + 1;
     this.convertCalendarDate( agenda );
     this.agendas.push( agenda );
   }

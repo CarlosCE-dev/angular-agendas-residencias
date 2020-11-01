@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 // Service
 import { AgendaService } from 'src/app/services/agenda.service';
+import { ApiService } from 'src/app/services/api.service';
 
 // Dialog
 import { CreateScheduleComponent } from '../modal/create-schedule/create-schedule.component';
@@ -23,7 +24,8 @@ export class TableComponent {
 
   constructor(
     public dialog: MatDialog,
-    public agendaService: AgendaService
+    private agendaService: AgendaService,
+    private apiService: ApiService
   ) {}
 
   openEdit( id:number ): void {
@@ -36,9 +38,12 @@ export class TableComponent {
     dialogRef.componentInstance.agenda = new Agenda( agenda );
     dialogRef.componentInstance.nombreModal = "Editar evento";
 
-    dialogRef.afterClosed().subscribe( ( response:ResponseDialog ) => {
+    dialogRef.afterClosed().subscribe( async ( response:ResponseDialog ) => {
       if ( response?.ok ) {
-        this.agendaService.editAgenda( response.agenda );
+        const agendaEdited = await this.apiService.editAgendaFromApi( response.agenda );
+        if ( agendaEdited ) {
+          this.agendaService.editAgenda( agenda );
+        }
       }
     });
 
@@ -49,9 +54,12 @@ export class TableComponent {
       width: '300px',
     });
 
-    dialogRef.afterClosed().subscribe( ( response:ResponseDialog ) => {
+    dialogRef.afterClosed().subscribe( async ( response:ResponseDialog ) => {
       if (response?.ok){
-        this.agendaService.deleteAgenda( id );
+        const agendaDeleted = await this.apiService.deleteAgendaFromApi( id );
+        if ( agendaDeleted ){
+          this.agendaService.deleteAgenda( id );
+        }
       }
     });
 

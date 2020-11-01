@@ -10,6 +10,7 @@ import { AgendaService } from 'src/app/services/agenda.service';
 
 // Interface
 import { ResponseDialog } from 'src/app/interfaces/interfaces';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -23,19 +24,12 @@ export class HomeComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private agendaService: AgendaService,
+    private apiService: ApiService
   ) {}
 
-  ngOnInit(){
-
-    // Nueva agenda
-    const agenda = new Agenda();
-    agenda.nombre = "Cumpleaños Mario";
-    agenda.persona = "Carlos Esteban Corral";
-    agenda.telefono = "6291017687";
-    agenda.correo = "test@test.com"
-    agenda.status = true;
-
-    this.agendaService.addAgenda( agenda );
+  async ngOnInit(){
+    const agendas = await this.apiService.getAgendasFromApi();
+    this.agendaService.loadAgenda( agendas );
   }
 
   openDialog(): void {
@@ -45,9 +39,10 @@ export class HomeComponent implements OnInit {
 
     dialogRef.componentInstance.agenda = new Agenda();
 
-    dialogRef.afterClosed().subscribe( ( response:ResponseDialog ) => {
+    dialogRef.afterClosed().subscribe( async ( response:ResponseDialog ) => {
       if ( response?.ok ) {
-        this.agendaService.addAgenda( response.agenda );
+        const agenda = await this.apiService.addAgendaToApi( response.agenda );
+        this.agendaService.addAgenda( agenda );
       }
     });
   }
