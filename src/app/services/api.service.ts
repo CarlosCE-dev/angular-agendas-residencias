@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  url:string = "http://192.168.0.7:62483/api/agenda";
+  url:string = "http://localhost:5000/api/agenda";
 
   constructor(
     private http: HttpClient
@@ -35,7 +35,7 @@ export class ApiService {
 
   deleteAgendaFromApi( id:number ): Promise<boolean> {
     return new Promise(resolve => {
-      this.http.post(`${this.url}/delete`, id ).subscribe( (_) => {
+      this.http.post(`${this.url}/delete/${id}`, {}).subscribe( (_) => {
             resolve( true );
         }, err => {
           resolve( false );

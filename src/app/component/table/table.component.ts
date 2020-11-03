@@ -24,7 +24,7 @@ export class TableComponent {
 
   constructor(
     public dialog: MatDialog,
-    private agendaService: AgendaService,
+    public agendaService: AgendaService,
     private apiService: ApiService
   ) {}
 
@@ -42,7 +42,7 @@ export class TableComponent {
       if ( response?.ok ) {
         const agendaEdited = await this.apiService.editAgendaFromApi( response.agenda );
         if ( agendaEdited ) {
-          this.agendaService.editAgenda( agenda );
+          this.agendaService.editAgenda( response.agenda );
         }
       }
     });

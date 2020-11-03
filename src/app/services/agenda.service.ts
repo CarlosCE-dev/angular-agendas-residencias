@@ -33,26 +33,34 @@ export class AgendaService {
   deleteAgenda( id:number) {
     this.agendas = this.agendas.filter( a => a.id !== id );
     this.removeCalendarDate( id );
+    this.orderDates();
   }
 
   loadAgenda( agendas:Agenda[] ){
-    this.agendas = agendas;
-    this.convertCalendarDates( agendas );
+    this.agendas = agendas.map( ( a ) => {
+      a.fecha = new Date( a.fecha )
+      return a;
+    });
+    this.convertCalendarDates( this.agendas );
   }
 
   addAgenda( agenda:Agenda ): void {
+    agenda.fecha = new Date( agenda.fecha );
     this.convertCalendarDate( agenda );
     this.agendas.push( agenda );
+    this.orderDates();
   }
 
   editAgenda( agenda:Agenda ) {
     this.agendas = this.agendas.map( ( a ) => {
       if ( a.id === agenda.id ) {
+        console.log(true, a)
         a = agenda;
       }
       return a;
     });
     this.editCalendarDate( agenda );
+    this.orderDates();
   }
 
   editCalendarDate( agenda:Agenda ) {
@@ -102,7 +110,7 @@ export class AgendaService {
     calendarDates.push(...this.calendarOptions.events);
     
     // @ts-ignore
-    this.calendarOptions.events = calendarDates.filter( c => c.id !== id );;
+    this.calendarOptions.events = calendarDates.filter( c => c.id !== id );
   }
 
   convertCalendarDate( agenda:Agenda ) {
@@ -137,5 +145,9 @@ export class AgendaService {
     // @ts-ignore
     this.calendarOptions.events = calendarDates;
   }
-  
+
+  orderDates() {
+    this.agendas = this.agendas.sort(function(a,b){return a.fecha.getTime() - b.fecha.getTime()});
+  }
+ 
 }
